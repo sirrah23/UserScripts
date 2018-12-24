@@ -19,8 +19,42 @@ function createButton(text, id, idx, clickFunc){
     newButton.onclick = clickFunc
 }
 
+function getCollapser(){
+    const comments = document.getElementsByClassName("comment")
+    const isFlaggedComments = Array.prototype.slice.call(comments).map(ce => ce.innerText === "[flagged]")
+
+    function getNumChildren(toggleText){
+        const numOfChildrenRegex = /\d+/
+        return parseInt(numOfChildrenRegex.exec(toggleText)) - 1
+    }
+
+    return function(){
+        const commentToggles = document.getElementsByClassName("togg")
+        let parentToCollapseIndex = null;
+        let numChildrenToSkip = 0;
+        const uncollapsedComment = "[-]"
+
+        for(let i = 0; i < commentToggles.length; i++){
+            if(numChildrenToSkip > 0){
+                if(!isFlaggedComments[i]){
+                    --numChildrenToSkip
+                }
+                continue
+            }
+            if(commentToggles[i].innerHTML === uncollapsedComment){
+                parentToCollapseIndex = i
+                break
+            } else {
+                numChildrenToSkip = getNumChildren(commentToggles[i].innerHTML)
+            }
+        }
+        if(parentToCollapseIndex !== null){
+            commentToggles[parentToCollapseIndex].click()
+        }
+    }
+}
+
+
 (function(){
-    createButton("test", "cc", 0, () => {
-        console.log("Hello World!")
-    })
+    createButton("cc", "cc", 0, getCollapser())
 })()
