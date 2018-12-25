@@ -20,6 +20,7 @@ function createButton(text, id, idx, clickFunc){
 }
 
 function getCollapser(){
+    const commentToggles = document.getElementsByClassName("togg") 
     const comments = document.getElementsByClassName("comment")
     const isFlaggedComments = Array.prototype.slice.call(comments).map(ce => ce.innerText === "[flagged]")
 
@@ -28,11 +29,13 @@ function getCollapser(){
         return parseInt(numOfChildrenRegex.exec(toggleText)) - 1
     }
 
+    function isUncollapsedComment(c){
+        return c.innerHTML === "[-]"
+    }
+
     return function(){
-        const commentToggles = document.getElementsByClassName("togg")
         let parentToCollapseIndex = null;
         let numChildrenToSkip = 0;
-        const uncollapsedComment = "[-]"
 
         for(let i = 0; i < commentToggles.length; i++){
             if(numChildrenToSkip > 0){
@@ -41,7 +44,7 @@ function getCollapser(){
                 }
                 continue
             }
-            if(commentToggles[i].innerHTML === uncollapsedComment){
+            if(isUncollapsedComment(commentToggles[i])){
                 parentToCollapseIndex = i
                 break
             } else {
