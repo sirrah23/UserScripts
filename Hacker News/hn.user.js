@@ -3,7 +3,7 @@
 // @namespace Violentmonkey Scripts
 // @match https://news.ycombinator.com/item*
 // @grant none
-// @description Create a button which, when clicked, will collapse the topmost, uncollapsed parent comment in a thread.
+// @description Adds button to Hacker News threads that collapses topmost, uncollapsed parent comment and scrolls to it afterwards.
 // ==/UserScript==
 
 function createButton(text, id, idx, clickFunc){
@@ -53,6 +53,7 @@ function getCollapser(){
         }
         if(parentToCollapseIndex !== null){
             commentToggles[parentToCollapseIndex].click()
+            commentToggles[parentToCollapseIndex].scrollIntoView()
         }
     }
 }
