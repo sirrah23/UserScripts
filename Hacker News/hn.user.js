@@ -4,6 +4,7 @@
 // @match https://news.ycombinator.com/item*
 // @grant none
 // @description Adds button to Hacker News threads that collapses topmost, uncollapsed parent comment and scrolls to it afterwards.
+// @version 1.0
 // ==/UserScript==
 
 function createButton(text, id, idx, clickFunc){

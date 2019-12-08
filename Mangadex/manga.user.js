@@ -4,6 +4,7 @@
 // @match https://mangadex.org/
 // @grant none
 // @description Adds buttons that open all popular manga from the following categories: past six hours, past day, and past week
+// @version 1.0
 // ==/UserScript==
 
 class hrefContainer{
