@@ -3,7 +3,7 @@
 // @namespace Violentmonkey Scripts
 // @match https://mangadex.org/
 // @grant none
-// @description Create buttons to open all popular manga from the following categories: past six hours, past day, and past week
+// @description Adds buttons that open all popular manga from the following categories: past six hours, past day, and past week
 // ==/UserScript==
 
 class hrefContainer{
